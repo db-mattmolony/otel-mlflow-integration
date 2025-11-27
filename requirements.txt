@@ -1,0 +1,22 @@
+# MLflow with OpenTelemetry support
+mlflow>=3.6.0
+openai>=1.0.0
+
+# OpenTelemetry core components
+opentelemetry-api>=1.20.0
+opentelemetry-sdk>=1.20.0
+opentelemetry-exporter-otlp>=1.20.0
+
+# OpenTelemetry instrumentation for automatic tracing
+opentelemetry-instrumentation>=0.41b0
+opentelemetry-instrumentation-fastapi>=0.41b0
+opentelemetry-instrumentation-requests>=0.41b0
+
+# Web framework for API example
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.31.0
+
