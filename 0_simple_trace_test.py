@@ -10,7 +10,6 @@ import mlflow
 from config import (
     DATABRICKS_HOST,
     DATABRICKS_TOKEN,
-    MLFLOW_TRACKING_URI,
     MLFLOW_EXPERIMENT_NAME_BASIC,
 )
 

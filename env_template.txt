@@ -9,10 +9,6 @@ DATABRICKS_HOST=https://your-workspace.cloud.databricks.com
 # Get this from: User Settings > Developer > Access Tokens
 DATABRICKS_TOKEN=dapi1234567890abcdef
 
-# MLflow Configuration
-# This should match your DATABRICKS_HOST
-MLFLOW_TRACKING_URI=https://your-workspace.cloud.databricks.com
-
 # Experiment used by the basic/agent scripts (e.g. 0_simple_trace_test, 1_basic_mlflow_agent, 2_mlflow_tracing_agent)
 # Format: /Users/your.email@company.com/experiment-name
 MLFLOW_EXPERIMENT_NAME_BASIC=/Users/your.email@company.com/otel-tracing-basic
