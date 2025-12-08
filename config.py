@@ -27,6 +27,20 @@ MLFLOW_EXPERIMENT_NAME_OTEL = os.getenv(
 )
 
 
+MLFLOW_TRACING_SQL_WAREHOUSE_ID = os.getenv(
+    "MLFLOW_TRACING_SQL_WAREHOUSE_ID",
+    "tttttttt336",
+)
+UC_CATALOG_NAME = os.getenv(
+    "UC_CATALOG_NAME",
+    "my_catalog",
+)
+UC_SCHEMA_NAME = os.getenv(
+    "UC_SCHEMA_NAME",
+    "my_schema",
+)
+
+
 # OpenAI Configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 

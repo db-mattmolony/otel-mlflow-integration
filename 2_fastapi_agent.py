@@ -15,6 +15,9 @@ from config import (
     DATABRICKS_TOKEN,
     MLFLOW_EXPERIMENT_NAME_OTEL,
     OPENAI_API_KEY,
+    MLFLOW_TRACING_SQL_WAREHOUSE_ID,
+    UC_CATALOG_NAME,
+    UC_SCHEMA_NAME
 )
 
 # Configure Databricks connection
@@ -60,6 +63,13 @@ from openai import OpenAI
 async def lifespan(app: FastAPI):
     """Configure MLflow at startup"""
     mlflow.set_tracking_uri("databricks")
+    
+    mlflow.tracing.set_destination(
+    destination=mlflow.entities.UCSchemaLocation(
+        catalog_name=UC_CATALOG_NAME,
+        schema_name=UC_SCHEMA_NAME,
+    )
+)
     experiment = mlflow.set_experiment(MLFLOW_EXPERIMENT_NAME_OTEL)
     
     print("✓ OpenTelemetry TracerProvider configured")

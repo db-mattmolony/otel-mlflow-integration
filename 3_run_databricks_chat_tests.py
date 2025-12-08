@@ -26,13 +26,12 @@ import httpx
 BASE_URL = "http://localhost:8000"
 
 
-# Databricks-related prompts for the /chat endpoint
-CHAT_QUERIES: List[str] = [
-    "What is Databricks and what problem does it solve?",
-    "Explain Databricks Unity Catalog in simple terms.",
-    "How does MLflow integrate with Databricks?",
-    "What are Databricks Experiments used for in MLflow?",
-    "How does OpenTelemetry tracing help debug Databricks ML workflows?",
+CHAT_QUERIES = [
+    "What is the Databricks Lakehouse and how is it different from a traditional data warehouse?",
+    "Explain Delta Live Tables and when you should use them.",
+    "How does Databricks Serverless improve performance and cost efficiency?",
+    "What is the role of Feature Store in Databricks machine learning workflows?",
+    "How does Unity Catalog manage data lineage across pipelines, notebooks, and dashboards?",
 ]
 
 
