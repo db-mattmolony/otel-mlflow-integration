@@ -27,11 +27,11 @@ BASE_URL = "http://localhost:8000"
 
 
 CHAT_QUERIES = [
-    "What is the Databricks Lakehouse and how is it different from a traditional data warehouse?",
-    "Explain Delta Live Tables and when you should use them.",
-    "How does Databricks Serverless improve performance and cost efficiency?",
-    "What is the role of Feature Store in Databricks machine learning workflows?",
-    "How does Unity Catalog manage data lineage across pipelines, notebooks, and dashboards?",
+    "How does Databricks AutoML accelerate model development for both novice and experienced data scientists?",
+    "What types of models can Databricks AutoML automatically train and tune?",
+    "How does AutoML generate transparent, production-ready notebooks for further customisation?",
+    "What features of AutoML help ensure reproducible and governed ML workflows within Unity Catalog?",
+    "How does AutoML evaluate competing models and select the best candidate for deployment?",
 ]
 
 
