@@ -35,6 +35,21 @@ from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 # Get OTEL tracer for manual spans
 tracer = trace.get_tracer(__name__, "1.0.0")
 
+def _normalize_message_content(content):
+    """Normalize OpenAI-compatible message content to a single string."""
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        text_chunks = []
+        for item in content:
+            if isinstance(item, dict):
+                # Databricks/Responses-style content blocks often use "text" or "content".
+                text_value = item.get("text") or item.get("content")
+                if isinstance(text_value, str) and text_value:
+                    text_chunks.append(text_value)
+        return "\n".join(text_chunks).strip()
+    return str(content) if content is not None else ""
+
 
 # ============================================================
 # App Lifespan - Configure MLflow at startup
@@ -98,17 +113,19 @@ async def chat(request: Request):
         })
     
     # OpenAI call - automatically traced by mlflow.openai.autolog()
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(api_key=OPENAI_API_KEY,
+                      base_url="https://1444828305810485.ai-gateway.cloud.databricks.com/mlflow/v1")
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="databricks-gpt-oss-120b",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": query}
         ],
-        max_tokens=200
+        max_tokens=800
     )
     
-    answer = response.choices[0].message.content
+    raw_content = response.choices[0].message.content
+    answer = _normalize_message_content(raw_content)
     
     # OTEL Signal 2: Custom span for response postprocessing
     with tracer.start_as_current_span("response_postprocessing") as post_span:
@@ -124,7 +141,8 @@ async def chat(request: Request):
     return {
         "query": query,
         "answer": answer,
-        "model": "gpt-4o-mini",
+        "raw_answer_content": raw_content,
+        "model": "databricks-gpt-oss-120b",
     }
 
 

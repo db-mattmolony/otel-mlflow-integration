@@ -13,7 +13,6 @@ from config import (
     MLFLOW_EXPERIMENT_NAME_BASIC,
 )
 
-
 def setup_mlflow():
     """Configure MLflow to connect to Databricks"""
     # Set environment variables BEFORE any MLflow calls

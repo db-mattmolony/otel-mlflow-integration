@@ -101,11 +101,12 @@ def process_chat(query: str) -> str:
         
         # OpenTelemetry span for detailed tracing
         with tracer.start_as_current_span("openai_completion") as otel_span:
-            otel_span.set_attribute("model", "gpt-4o-mini")
+            otel_span.set_attribute("model", "databricks-gpt-5-2")
             
-            client = OpenAI(api_key=OPENAI_API_KEY)
+            client = OpenAI(api_key=OPENAI_API_KEY,
+                              base_url="https://1444828305810485.ai-gateway.cloud.databricks.com/mlflow/v1")
             response = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="databricks-gpt-5-2",
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": query}
